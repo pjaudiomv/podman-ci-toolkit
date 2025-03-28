@@ -50,7 +50,7 @@ jobs:
             ghcr.io/pjaudiomv/podman-ci-toolkit:1.0.0 \
             podman build \
               --file /workspace/hello.Dockerfile \
-              --build-context /workspace \
+              --build-context build=/workspace \
               --tag "docker.io/pjaudiomv/hello-test:${{ needs.prepare.outputs.tag }}-${{ matrix.arch }}" &&
             podman push "docker.io/pjaudiomv/hello-test:${{ needs.prepare.outputs.tag }}-${{ matrix.arch }}"
 
