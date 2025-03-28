@@ -43,7 +43,7 @@ jobs:
       - name: Build and push ${{ matrix.arch }} image
         run: |
           docker run --rm \
-            --security-opt seccomp=unconfined
+            --security-opt seccomp=unconfined \
             -v "$PWD:/workspace" \
             -v "$PWD/.docker:/home/builder/.docker" \
             -w /workspace \
