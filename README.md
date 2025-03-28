@@ -65,7 +65,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Build and push with Kaniko
+      - name: Build and push with Podman
         run: |
            podman build \
             --file=Dockerfile \
@@ -108,7 +108,7 @@ This project uses GitHub Actions for continuous integration and delivery:
 The repository includes an example GitHub workflow (`.github/workflows/example.yaml`) that demonstrates how to use the podman-ci-toolkit image in a real-world CI/CD pipeline:
 
 ```yaml
-name: Example Multi-Arch Kaniko Build
+name: Example Multi-Arch Podman Build
 
 on:
   push:
@@ -190,7 +190,7 @@ This workflow demonstrates:
 1. **Dynamic Tag Generation**: Automatically determines the appropriate tag based on the Git reference
 2. **Multi-Architecture Builds**: Builds images for both amd64 and arm64 architectures
 3. **Docker Registry Authentication**: Sets up authentication for Docker Hub
-4. **Kaniko Image Building**: Uses the podman-ci-toolkit to build and push architecture-specific images
+4. **Podman Image Building**: Uses the podman-ci-toolkit to build and push architecture-specific images
 5. **Multi-Architecture Manifest**: Creates and pushes a multi-architecture manifest using manifest-tool
 
 You can use this workflow as a template for your own projects, adjusting the Dockerfile path, destination registry, and other parameters as needed.
@@ -280,7 +280,7 @@ This GitLab CI configuration achieves the same functionality as the GitHub workf
 1. **Dynamic Tag Generation**: Uses GitLab CI variables to determine the appropriate tag
 2. **Multi-Architecture Builds**: Uses GitLab runners with specific tags for different architectures
 3. **Docker Registry Authentication**: Sets up authentication using GitLab CI variables
-4. **Kaniko Image Building**: Uses the podman-ci-toolkit to build and push architecture-specific images
+4. **Podman Image Building**: Uses the podman-ci-toolkit to build and push architecture-specific images
 5. **Multi-Architecture Manifest**: Creates and pushes a multi-architecture manifest
 
 Note that you'll need to:

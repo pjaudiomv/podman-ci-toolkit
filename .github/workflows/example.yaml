@@ -1,4 +1,4 @@
-name: Example Multi-Arch Kaniko Build
+name: Example Multi-Arch Podman Build
 
 on:
   push:
