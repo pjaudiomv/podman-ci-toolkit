@@ -43,6 +43,7 @@ jobs:
       - name: Build and push ${{ matrix.arch }} image
         run: |
           docker run --rm \
+            --security-opt seccomp=unconfined
             -v "$PWD:/workspace" \
             -v "$PWD/.docker:/home/builder/.docker" \
             -w /workspace \
@@ -50,8 +51,8 @@ jobs:
             podman build \
               --file /workspace/nginx.Dockerfile \
               --build-context /workspace \
-              --tag "docker.io/pjaudiomv/nginx-test:${{ needs.prepare.outputs.tag }}-${{ matrix.arch }}" &&
-            podman push "docker.io/pjaudiomv/nginx-test:${{ needs.prepare.outputs.tag }}-${{ matrix.arch }}"
+              --tag "docker.io/pjaudiomv/hello-test:${{ needs.prepare.outputs.tag }}-${{ matrix.arch }}" &&
+            podman push "docker.io/pjaudiomv/hello-test:${{ needs.prepare.outputs.tag }}-${{ matrix.arch }}"
 
   manifest:
     name: Create Multi-Arch Manifest
@@ -72,5 +73,5 @@ jobs:
             ghcr.io/pjaudiomv/podman-ci-toolkit:1.0.0 \
             manifest-tool push from-args \
               --platforms linux/amd64,linux/arm64 \
-              --template "docker.io/pjaudiomv/nginx-test:${{ needs.prepare.outputs.tag }}-ARCH" \
-              --target "docker.io/pjaudiomv/nginx-test:${{ needs.prepare.outputs.tag }}"
+              --template "docker.io/pjaudiomv/hello-test:${{ needs.prepare.outputs.tag }}-ARCH" \
+              --target "docker.io/pjaudiomv/hello-test:${{ needs.prepare.outputs.tag }}"
